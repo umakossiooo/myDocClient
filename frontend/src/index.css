@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.btn {
+  @apply font-normal rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200;
+}
+
+/* Botón estilo "Aceptar" */
+.btn-primary {
+  @apply text-white bg-[#1E6CFF] hover:bg-[#1A5FE0] focus:ring-4 focus:ring-[#A9CDFF];
+}
+
+/* Botón estilo "Ignorar" */
+.btn-outline {
+  @apply text-[#1E6CFF] border border-[#1E6CFF] hover:bg-[#1E6CFF] hover:text-white focus:ring-4 focus:ring-[#A9CDFF];
+}
+
+.chat-bubble-doctor {
+  @apply bg-[#00264D] text-white rounded-xl rounded-br-none;
+}
+
+.chat-bubble-paciente {
+  @apply bg-[#F4F5F6] text-gray-800 rounded-xl rounded-tl-none;
+}
+
+.chat-time-doctor {
+  @apply text-right text-[#9BB8D3];
+}
+
+.chat-time-paciente {
+  @apply text-left text-gray-400;
+}
