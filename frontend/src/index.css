@@ -15,17 +15,17 @@ body {
 }
 
 .btn {
-  @apply font-normal rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200;
+  @apply font-normal rounded-lg text-sm px-1 py-2.5 text-center transition-colors duration-200;
 }
 
 /* Botón estilo "Aceptar" */
 .btn-primary {
-  @apply text-white bg-[#1E6CFF] hover:bg-[#1A5FE0] focus:ring-4 focus:ring-[#A9CDFF];
+  @apply text-white bg-[#1E6CFF] hover:bg-[#1A5FE0] focus:ring-4 focus:ring-[#A9CDFF] px-5;
 }
 
 /* Botón estilo "Ignorar" */
 .btn-outline {
-  @apply text-[#1E6CFF] border border-[#1E6CFF] hover:bg-[#1E6CFF] hover:text-white focus:ring-4 focus:ring-[#A9CDFF];
+  @apply text-[#1E6CFF] border border-[#1E6CFF] hover:bg-[#1E6CFF] hover:text-white focus:ring-4 focus:ring-[#A9CDFF] px-5;
 }
 
 .chat-bubble-doctor {

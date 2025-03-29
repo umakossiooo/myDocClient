@@ -1,6 +1,8 @@
 import React from 'react';
 import ChatMessages from './ChatMessages';
-import { FileText } from 'react-feather';
+import { FileText} from 'react-feather';
+import { BsCheckCircle } from 'react-icons/bs';
+import { CircleCheck } from 'lucide-react';
 
 const ChatBox: React.FC = () => {
     return (
@@ -10,12 +12,11 @@ const ChatBox: React.FC = () => {
                     <p className="text-sm font-semibold text-gray-900 text-left">Adrián Rodríguez</p>
                     <p className="text-xs text-gray-500 text-left">+52 222-222-2222</p>
                 </div>
-                <div className="flex flex-row gap-2">
-                    <div>
-                        <FileText className="w-4 h-4" />
-                        <button className="btn">Registrar consulta</button>
-                    </div>
-                    <button className="btn">Ver historial</button>
+                <div className="flex items-center">
+                    <FileText className="w-4 h-4" />
+                    <button className="btn mr-6">Registrar consulta</button>
+                    <CircleCheck className="w-4 h-4" />
+                    <button className="btn">Finalizar conversación</button>
                 </div>
             </div>
             <ChatMessages />
