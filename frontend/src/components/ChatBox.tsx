@@ -4,6 +4,7 @@ import { FileText } from 'react-feather';
 import { CircleCheck } from 'lucide-react';
 import { FiMic } from "react-icons/fi";
 import { LuSendHorizontal } from "react-icons/lu";
+import { GoPlusCircle } from "react-icons/go";
 
 const ChatBox: React.FC = () => {
     return (
@@ -23,7 +24,10 @@ const ChatBox: React.FC = () => {
             <ChatMessages />
             <div className="border-t px-4 py-3 bg-white">
                 <form className="relative flex items-center">
-                    <input type="text" placeholder="Escribe un mensaje..." className="flex-1 rounded-lg px-6 py-5 text-sm pr-28" />
+                    <button type="button" className="absolute left-5 text-gray-500 rounded-lg px-0 py-2">
+                        <GoPlusCircle className="w-6 h-6" />
+                    </button>
+                    <input type="text" placeholder="Escribe un mensaje..." className="flex-1 rounded-lg px-14 py-5 text-sm pr-28" />
                     <button type="button" className="absolute right-16 text-gray-500 rounded-lg px-0 py-2">
                         <FiMic className="w-6 h-6" />
                     </button>
