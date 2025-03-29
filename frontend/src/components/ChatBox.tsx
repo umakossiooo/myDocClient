@@ -1,8 +1,9 @@
 import React from 'react';
 import ChatMessages from './ChatMessages';
-import { FileText} from 'react-feather';
-import { BsCheckCircle } from 'react-icons/bs';
+import { FileText } from 'react-feather';
 import { CircleCheck } from 'lucide-react';
+import { FiMic } from "react-icons/fi";
+import { LuSendHorizontal } from "react-icons/lu";
 
 const ChatBox: React.FC = () => {
     return (
@@ -20,6 +21,17 @@ const ChatBox: React.FC = () => {
                 </div>
             </div>
             <ChatMessages />
+            <div className="border-t px-4 py-3 bg-white">
+                <form className="relative flex items-center">
+                    <input type="text" placeholder="Escribe un mensaje..." className="flex-1 rounded-lg px-6 py-5 text-sm pr-28" />
+                    <button type="button" className="absolute right-16 text-gray-500 rounded-lg px-0 py-2">
+                        <FiMic className="w-6 h-6" />
+                    </button>
+                    <button type="submit" className="absolute right-5 text-white bg-orange-400 hover:bg-orange-500 rounded-lg px-2 py-2">
+                        <LuSendHorizontal className="w-5 h-5" />
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
