@@ -41,7 +41,7 @@ const ChatBox: React.FC = () => {
             {/* Chat Input */}
             <div className="border-t border-gray-200 px-4 py-3">
                 <form className="relative flex items-center">
-                    <button type="button" className="absolute left-5 text-gray-500">
+                    <button type="button" className="absolute left-5 text-gray-500 hover:text-gray-600">
                         <GoPlusCircle className="w-6 h-6" />
                     </button>
                     <input
