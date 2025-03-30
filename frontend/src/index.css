@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn {
-  @apply font-normal rounded-lg text-sm px-2 py-2.5 text-center transition-colors duration-200;
+  @apply font-normal rounded-lg text-sm px-2 py-1.5 text-center transition-colors duration-200;
 }
 
 /* Botón estilo "Aceptar" */
@@ -42,5 +42,5 @@ input[type="text"]::placeholder {
 }
 
 .conversation-container {
-  @apply bg-[#F4F5F6] rounded pt-4 pb-4 px-4; 
+  @apply bg-[#F4F5F6] rounded pt-4 pb-4 px-4;
 }
