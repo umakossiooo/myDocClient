@@ -1,15 +1,20 @@
 import React from 'react';
 import './App.css';
 import ChatPage from './pages/ChatPage';
-import MainHeader from './components/MainHeader';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MedPage from './pages/MedPage';
+import PatientsPage from './pages/PatientsPage';
 
 const App: React.FC = () => {
   return (
-    <div>
-    <MainHeader />
-    <ChatPage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/chats" element={<ChatPage />} />
+        <Route path="/meds" element={<MedPage />} />
+        <Route path="/patients" element={<PatientsPage />} />
+      </Routes>
+    </Router>
   );
 };
-
 export default App;

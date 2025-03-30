@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { TfiComments } from "react-icons/tfi";
 import { AiOutlineUser } from "react-icons/ai";
 import { TbUsersPlus } from "react-icons/tb";
 import { GoDotFill } from "react-icons/go";
 import { LuChevronDown } from "react-icons/lu";
-import { FaFileImage } from "react-icons/fa";
 
 const MainHeader: React.FC = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,37 +17,27 @@ const MainHeader: React.FC = () => {
         <div className="bg-white flex flex-wrap items-center px-4 py-4">
             {/* Tabs Navigation */}
             <div className="flex flex-wrap items-center space-x-1">
-                <FaFileImage />
-                <button
+                <Link
+                    to="/chats"
                     className="flex items-center p-4 text-gray-900 font-normal text-sm hover:text-orange-400 space-x-3"
-                    id="conversations-tab"
-                    type="button"
-                    role="tab"
-                    aria-selected="true"
                 >
                     <TfiComments className="w-5 h-5 font-bold" />
                     <span>Conversaciones</span>
-                </button>
-                <button
+                </Link>
+                <Link
+                    to="/patients"
                     className="flex items-center p-4 text-gray-900 font-normal text-sm hover:text-orange-400"
-                    id="patients-tab"
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
                 >
                     <TbUsersPlus className="w-5 h-5" />
                     <span className="ml-2">Pacientes</span>
-                </button>
-                <button
+                </Link>
+                <Link
+                    to="/meds"
                     className="flex items-center p-4 text-gray-900 font-normal text-sm hover:text-orange-400"
-                    id="doctors-tab"
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
                 >
                     <AiOutlineUser className="w-5 h-5" />
                     <span className="ml-2">Médicos</span>
-                </button>
+                </Link>
             </div>
 
             {/* User Information */}
