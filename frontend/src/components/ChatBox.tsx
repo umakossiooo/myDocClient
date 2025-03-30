@@ -49,7 +49,7 @@ const ChatBox: React.FC = () => {
                         placeholder="Escribe un mensaje..."
                         className="flex-1 rounded-lg px-14 py-5 text-sm pr-28"
                     />
-                    <button type="button" className="absolute right-16 text-gray-500">
+                    <button type="button" className="absolute right-16 text-gray-500 hover:text-gray-600">
                         <FiMic className="w-6 h-6" />
                     </button>
                     <button
