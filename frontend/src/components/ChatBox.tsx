@@ -13,8 +13,8 @@ const ChatBox: React.FC = () => {
             {/* Header */}
             <div className="flex flex-wrap justify-between items-center px-4 py-4 border-b border-gray-200 gap-2">
                 <div className="flex flex-row gap-4 items-center">
-                    <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
-                        <TbMessageDots className="w-4 h-4 text-gray-500" />
+                    <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
+                        <TbMessageDots className="w-4 h-4 text-blue-900" />
                     </div>
                     <div>
                         <p className="text-sm font-semibold text-gray-900 text-left truncate">Adrián Rodríguez</p>

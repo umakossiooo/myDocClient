@@ -43,8 +43,8 @@ const ConversationPanel: React.FC = () => {
                         {solicitudes.map((s) => (
                             <div key={s.id} className="conversation-container flex items-center justify-between text-sm">
                                 <div className="flex items-center gap-3">
-                                    <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
-                                        <LuPhoneCall className="w-4 h-4 text-gray-500" />
+                                    <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
+                                        <LuPhoneCall className="w-4 h-4 text-blue-900" />
                                     </div>
                                     <div className="flex flex-col text-left">
                                         <p className="font-medium">{s.nombre}</p>
@@ -70,8 +70,8 @@ const ConversationPanel: React.FC = () => {
                                 className={`conversation-container flex items-center gap-3 p-2 rounded cursor-pointer text-sm ${conv.active ? "border-l-4 border-blue-500" : "hover:bg-gray-100"
                                     }`}
                             >
-                                <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
-                                    <TbMessageDots className="w-4 h-4 text-gray-500" />
+                                <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
+                                    <TbMessageDots className="w-4 h-4 text-blue-900" />
                                 </div>
                                 <div className="flex flex-col text-left">
                                     <p className="font-medium">{conv.nombre}</p>
