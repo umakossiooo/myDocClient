@@ -1,0 +1,29 @@
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+        max-width: 95vw;
+        padding: 1rem;
+    }
+
+    .conversation-panel,
+    .chat-box {
+        width: 100%;
+        min-height: 50vh;
+    }
+}
+
+@media (min-width: 768px) {
+    .chat-container {
+        flex-direction: row;
+        max-width: 80vw;
+        padding: 1.5rem;
+    }
+
+    .conversation-panel {
+        width: 33.333%;
+    }
+
+    .chat-box {
+        width: 66.666%;
+    }
+}

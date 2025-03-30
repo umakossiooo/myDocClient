@@ -8,26 +8,34 @@ import { GoPlusCircle } from "react-icons/go";
 
 const ChatBox: React.FC = () => {
     return (
-        <div className="container mx-auto bg-white px-4 py-4 rounded-lg shadow-sm h-full">
-            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
-                <div>
-                    <p className="text-sm font-semibold text-gray-900 text-left">Adrián Rodríguez</p>
-                    <p className="text-xs text-gray-500 text-left">+52 222-222-2222</p>
+        <div className="h-full flex flex-col bg-white rounded-lg shadow-sm">
+            {/* Header */}
+            <div className="flex flex-wrap justify-between items-center px-6 py-4 border-b border-gray-200 gap-2">
+                <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-gray-900 text-left truncate">Adrián Rodríguez</p>
+                    <p className="text-xs text-gray-500 text-left truncate">+52 222-222-2222</p>
                 </div>
-                <div className="flex items-center">
-                    <FileText className="w-4 h-4" />
-                    <button className="btn mr-6">Registrar consulta</button>
-                    <CircleCheck className="w-4 h-4" />
-                    <button className="btn">Finalizar conversación</button>
+                <div className="flex flex-wrap items-center space-x-2">
+                    <div className="flex flex-wrap items-center space-x-1">
+                        <FileText className="w-4 h-4 flex-shrink-0" />
+                        <button className="btn whitespace-nowrap text-sm px-1 py-1">Registrar consulta</button>
+                    </div>
+                    <div className="flex flex-wrap items-center space-x-1">
+                        <CircleCheck className="w-4 h-4 flex-shrink-0" />
+                        <button className="btn whitespace-nowrap text-sm">Finalizar conversación</button>
+                    </div>
                 </div>
             </div>
 
-            <ChatMessages />
+            {/* Chat Messages */}
+            <div className="flex-1 overflow-y-auto">
+                <ChatMessages />
+            </div>
 
-            {/* Chat input area */}
-            <div className="bg-white px-4 py-3">
+            {/* Chat Input */}
+            <div className="border-t border-gray-200 px-4 py-3">
                 <form className="relative flex items-center">
-                    <button type="button" className="absolute left-5 text-gray-500 rounded-lg px-0 py-2">
+                    <button type="button" className="absolute left-5 text-gray-500">
                         <GoPlusCircle className="w-6 h-6" />
                     </button>
                     <input
@@ -35,7 +43,7 @@ const ChatBox: React.FC = () => {
                         placeholder="Escribe un mensaje..."
                         className="flex-1 rounded-lg px-14 py-5 text-sm pr-28"
                     />
-                    <button type="button" className="absolute right-16 text-gray-500 rounded-lg px-0 py-2">
+                    <button type="button" className="absolute right-16 text-gray-500">
                         <FiMic className="w-6 h-6" />
                     </button>
                     <button

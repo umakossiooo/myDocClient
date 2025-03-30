@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn {
-  @apply font-normal rounded-lg text-sm px-1 py-2.5 text-center transition-colors duration-200;
+  @apply font-normal rounded-lg text-sm px-2 py-2.5 text-center transition-colors duration-200;
 }
 
 /* Botón estilo "Aceptar" */
