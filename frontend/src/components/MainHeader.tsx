@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { use, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { TfiComments } from "react-icons/tfi";
 import { AiOutlineUser } from "react-icons/ai";
 import { TbUsersPlus } from "react-icons/tb";
@@ -8,6 +8,7 @@ import { LuChevronDown } from "react-icons/lu";
 
 const MainHeader: React.FC = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const location = useLocation();
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -19,22 +20,19 @@ const MainHeader: React.FC = () => {
             <div className="flex flex-wrap items-center space-x-1">
                 <Link
                     to="/chats"
-                    className="flex items-center p-4 text-gray-900 font-normal text-sm hover:text-orange-400 space-x-3"
-                >
+                    className={`flex items-center p-4 font-normal text-sm hover:text-orange-400 ${location.pathname === "/chats" ? " text-orange-400" : "text-gray-800"}`}>
                     <TfiComments className="w-5 h-5 font-bold" />
-                    <span>Conversaciones</span>
+                    <span className="ml-2">Conversaciones</span>
                 </Link>
                 <Link
                     to="/patients"
-                    className="flex items-center p-4 text-gray-900 font-normal text-sm hover:text-orange-400"
-                >
+                    className={`flex items-center p-4 font-normal text-sm hover:text-orange-400 ${location.pathname === "/patients" ? " text-orange-400" : "text-gray-800"}`}>
                     <TbUsersPlus className="w-5 h-5" />
                     <span className="ml-2">Pacientes</span>
                 </Link>
                 <Link
                     to="/meds"
-                    className="flex items-center p-4 text-gray-900 font-normal text-sm hover:text-orange-400"
-                >
+                    className={`flex items-center p-4 font-normal text-sm hover:text-orange-400 ${location.pathname === "/meds" ? " text-orange-400" : "text-gray-800"}`}>
                     <AiOutlineUser className="w-5 h-5" />
                     <span className="ml-2">Médicos</span>
                 </Link>
