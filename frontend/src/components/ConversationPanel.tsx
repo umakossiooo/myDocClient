@@ -41,7 +41,10 @@ const ConversationPanel: React.FC = () => {
                     <h3 className="text-base text-gray-800 mb-2 text-left">Solicitudes</h3>
                     <div className="space-y-2">
                         {solicitudes.map((s) => (
-                            <div key={s.id} className="conversation-container flex items-center justify-between text-sm">
+                            <div
+                                key={s.id}
+                                className="conversation-container flex items-center justify-between text-sm flex-wrap gap-2"
+                            >
                                 <div className="flex items-center gap-3">
                                     <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
                                         <LuPhoneCall className="w-4 h-4 text-blue-900" />
@@ -51,7 +54,7 @@ const ConversationPanel: React.FC = () => {
                                         <p className="text-gray-500 text-xs">{s.telefono}</p>
                                     </div>
                                 </div>
-                                <div className="flex gap-1">
+                                <div className="flex gap-2 flex-wrap items-center">
                                     <button className="btn btn-outline">Ignorar</button>
                                     <button className="btn btn-primary">Aceptar</button>
                                 </div>
