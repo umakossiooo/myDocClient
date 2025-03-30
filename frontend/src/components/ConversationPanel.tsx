@@ -19,15 +19,21 @@ const ConversationPanel: React.FC = () => {
     return (
         <div className="h-full flex flex-col px-4 py-4 bg-white rounded-lg shadow-sm">
             {/* Tabs */}
-            <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
-                <ul className="flex flex-wrap -mb-px">
+            <div className="text-sm font-medium text-gray-500 border-b border-gray-200 pt-5">
+                <ul className="flex flex-wrap">
                     <li className="mr-2">
-                        <a href="#" className="inline-block p-4 border-b-2 border-blue-500 text-blue-500">
+                        <a
+                            href="#"
+                            className="block text-left pl-0 pb-2 mr-8 border-b-2 border-blue-500 text-blue-500"
+                        >
                             Conversaciones
                         </a>
                     </li>
                     <li className="mr-2">
-                        <a href="#" className="inline-block p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300">
+                        <a
+                            href="#"
+                            className="block text-left pl-0 pb-2 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300"
+                        >
                             Llamadas
                         </a>
                     </li>
