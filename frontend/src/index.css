@@ -2,30 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 .btn {
   @apply font-normal rounded-lg text-sm px-1 py-2.5 text-center transition-colors duration-200;
 }
 
 /* Botón estilo "Aceptar" */
 .btn-primary {
-  @apply text-white bg-[#1E6CFF] hover:bg-[#1A5FE0] focus:ring-4 focus:ring-[#A9CDFF] px-5;
+  @apply text-white bg-[#1E6CFF] hover:bg-[#1A5FE0] focus:ring-4 focus:ring-[#A9CDFF] px-4;
 }
 
 /* Botón estilo "Ignorar" */
 .btn-outline {
-  @apply text-[#1E6CFF] border border-[#1E6CFF] hover:bg-[#1E6CFF] hover:text-white focus:ring-4 focus:ring-[#A9CDFF] px-5;
+  @apply text-[#1E6CFF] bg-white border border-[#1E6CFF] hover:bg-[#1E6CFF] hover:text-white focus:ring-4 focus:ring-[#A9CDFF] px-4;
 }
 
 .chat-bubble-doctor {
@@ -37,7 +25,7 @@ body {
 }
 
 .chat-time-doctor {
-  @apply text-right text-[#9BB8D3];
+  @apply text-right text-white;
 }
 
 .chat-time-paciente {
@@ -45,10 +33,14 @@ body {
 }
 
 input[type="text"] {
-  background-color: #f5f5f5; /* Light grey background */
-  color: #333; /* Optional: Text color */
+  background-color: #F4F5F6;
+  color: #333;
 }
 
 input[type="text"]::placeholder {
-  color: #888; /* Optional: Placeholder text color */
+  color: #888;
+}
+
+.conversation-container {
+  @apply bg-[#F4F5F6] rounded pt-4 pb-4 px-4; 
 }

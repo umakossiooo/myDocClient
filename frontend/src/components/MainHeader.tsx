@@ -14,7 +14,7 @@ const MainHeader: React.FC = () => {
     };
 
     return (
-        <div className="flex justify-between items-center px-6 py-4 bg-white relative">
+        <div className="bg-white flex justify-between items-center px-6 py-4">
             {/* Tabs Navigation */}
             <div className="flex items-center space-x-1">
                 <FaFileImage />

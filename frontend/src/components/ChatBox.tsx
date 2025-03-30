@@ -8,8 +8,7 @@ import { GoPlusCircle } from "react-icons/go";
 
 const ChatBox: React.FC = () => {
     return (
-        
-        <div className="flex flex-col h-full bg-white border-1 border-gray-200 w-full">
+        <div className="container mx-auto bg-white px-4 py-4 rounded-lg shadow-sm h-full">
             <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
                 <div>
                     <p className="text-sm font-semibold text-gray-900 text-left">Adrián Rodríguez</p>
@@ -26,21 +25,29 @@ const ChatBox: React.FC = () => {
             <ChatMessages />
 
             {/* Chat input area */}
-            <div className="border-t px-4 py-3 bg-white">
+            <div className="bg-white px-4 py-3">
                 <form className="relative flex items-center">
                     <button type="button" className="absolute left-5 text-gray-500 rounded-lg px-0 py-2">
                         <GoPlusCircle className="w-6 h-6" />
                     </button>
-                    <input type="text" placeholder="Escribe un mensaje..." className="flex-1 rounded-lg px-14 py-5 text-sm pr-28" />
+                    <input
+                        type="text"
+                        placeholder="Escribe un mensaje..."
+                        className="flex-1 rounded-lg px-14 py-5 text-sm pr-28"
+                    />
                     <button type="button" className="absolute right-16 text-gray-500 rounded-lg px-0 py-2">
                         <FiMic className="w-6 h-6" />
                     </button>
-                    <button type="submit" className="absolute right-5 text-white bg-orange-400 hover:bg-orange-500 rounded-lg px-2 py-2">
+                    <button
+                        type="submit"
+                        className="absolute right-5 text-white bg-orange-400 hover:bg-orange-500 rounded-lg px-2 py-2"
+                    >
                         <LuSendHorizontal className="w-5 h-5" />
                     </button>
                 </form>
             </div>
         </div>
     );
-}
+};
+
 export default ChatBox;
