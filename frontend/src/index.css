@@ -8,12 +8,12 @@
 
 /* Botón estilo "Aceptar" */
 .btn-primary {
-  @apply text-white bg-[#1E6CFF] hover:bg-[#1A5FE0] focus:ring-4 focus:ring-[#A9CDFF] px-4;
+  @apply text-white bg-[#1579F5] hover:bg-[#1A5FE0] focus:ring-4 focus:ring-[#A9CDFF] px-4;
 }
 
 /* Botón estilo "Ignorar" */
 .btn-outline {
-  @apply text-[#1E6CFF] bg-white border border-[#1E6CFF] hover:bg-[#1E6CFF] hover:text-white focus:ring-4 focus:ring-[#A9CDFF] px-4;
+  @apply text-[#1579F5] bg-white border border-[#1579F5] hover:bg-[#1579F5] hover:text-white focus:ring-4 focus:ring-[#A9CDFF] px-4;
 }
 
 .chat-bubble-doctor {
