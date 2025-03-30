@@ -5,15 +5,21 @@ import { CircleCheck } from 'lucide-react';
 import { FiMic } from "react-icons/fi";
 import { LuSendHorizontal } from "react-icons/lu";
 import { GoPlusCircle } from "react-icons/go";
+import { TbMessageDots } from 'react-icons/tb';
 
 const ChatBox: React.FC = () => {
     return (
         <div className="h-full flex flex-col bg-white rounded-lg shadow-sm">
             {/* Header */}
-            <div className="flex flex-wrap justify-between items-center px-6 py-4 border-b border-gray-200 gap-2">
-                <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-900 text-left truncate">Adrián Rodríguez</p>
-                    <p className="text-xs text-gray-500 text-left truncate">+52 222-222-2222</p>
+            <div className="flex flex-wrap justify-between items-center px-4 py-4 border-b border-gray-200 gap-2">
+                <div className="flex flex-row gap-4 items-center">
+                    <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
+                        <TbMessageDots className="w-4 h-4 text-gray-500" />
+                    </div>
+                    <div>
+                        <p className="text-sm font-semibold text-gray-900 text-left truncate">Adrián Rodríguez</p>
+                        <p className="text-xs text-gray-500 text-left truncate">+52 222-222-2222</p>
+                    </div>
                 </div>
                 <div className="flex flex-wrap items-center space-x-2">
                     <div className="flex flex-wrap items-center space-x-1">
