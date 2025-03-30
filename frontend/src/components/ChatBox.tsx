@@ -8,6 +8,7 @@ import { GoPlusCircle } from "react-icons/go";
 
 const ChatBox: React.FC = () => {
     return (
+        
         <div className="flex flex-col h-full bg-white border-1 border-gray-200 w-full">
             <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
                 <div>
@@ -21,7 +22,10 @@ const ChatBox: React.FC = () => {
                     <button className="btn">Finalizar conversación</button>
                 </div>
             </div>
+
             <ChatMessages />
+
+            {/* Chat input area */}
             <div className="border-t px-4 py-3 bg-white">
                 <form className="relative flex items-center">
                     <button type="button" className="absolute left-5 text-gray-500 rounded-lg px-0 py-2">
@@ -39,5 +43,4 @@ const ChatBox: React.FC = () => {
         </div>
     );
 }
-
 export default ChatBox;
