@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TbMessageDots } from "react-icons/tb";
 import { LuPhoneCall } from "react-icons/lu";
 import ConversationPanelHeader from "./ConversationPanelHeader";
+import ChatBox from "./ChatBox";
 import axios from "axios";
 
 interface Solicitud {
@@ -126,7 +127,11 @@ const ConversationPanel: React.FC = () => {
                         {conversacionesActivas.map((conv) => (
                             <div
                                 key={conv.id}
-                                className="conversation-container flex items-center gap-3 p-2 rounded cursor-pointer text-sm hover:bg-gray-100"
+                                className={`conversation-container flex items-center gap-3 p-2 rounded cursor-pointer text-sm hover:bg-gray-100 ${
+                                    selectedConversation?.id === conv.id
+                                        ? "bg-gray-200 border-l-4"
+                                        : "hover:border-l-4"
+                                }`}
                                 onClick={() => handleConversationClick(conv)}
                             >
                                 <div className="flex items-center gap-3">
@@ -147,16 +152,6 @@ const ConversationPanel: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            {selectedConversation && (
-                <div className="mt-4 p-4 bg-gray-100 rounded-lg shadow">
-                    <h3 className="text-lg font-medium text-gray-800">Chat with {selectedConversation.nombre}</h3>
-                    <p className="text-gray-500 text-sm">Phone: {selectedConversation.telefono}</p>
-                    {selectedConversation.type === "message" && (
-                        <p className="text-gray-700 mt-2">{selectedConversation.content}</p>
-                    )}
-                </div>
-            )}
         </div>
     );
 };

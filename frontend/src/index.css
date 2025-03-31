@@ -42,5 +42,5 @@ input[type="text"]::placeholder {
 }
 
 .conversation-container {
-  @apply bg-gray-50 rounded pt-4 pb-4 px-4;
+  @apply bg-gray-50 rounded pt-4 pb-4 px-4 hover:border-[#1579F5];
 }

@@ -7,25 +7,7 @@ import { LuSendHorizontal } from "react-icons/lu";
 import { GoPlusCircle } from "react-icons/go";
 import { TbMessageDots } from 'react-icons/tb';
 
-interface ChatBoxProps {
-    conversation: {
-        id: string;
-        nombre: string;
-        telefono: string;
-        type: "message" | "call";
-        content?: string;
-    } | null;
-}
-
-const ChatBox: React.FC<ChatBoxProps> = ({ conversation }) => {
-    if (!conversation) {
-        return (
-            <div className="h-full flex items-center justify-center bg-white rounded-lg shadow-sm">
-                <p className="text-gray-500 text-sm">No conversation selected.</p>
-            </div>
-        );
-    }
-
+const ChatBox: React.FC = () => {
     return (
         <div className="h-full flex flex-col bg-white rounded-lg shadow-sm">
             {/* Header */}
@@ -35,8 +17,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({ conversation }) => {
                         <TbMessageDots className="w-4 h-4 text-blue-900" />
                     </div>
                     <div>
-                        <p className="text-sm font-semibold text-gray-900 text-left truncate">{conversation.nombre}</p>
-                        <p className="text-xs text-gray-500 text-left truncate">{conversation.telefono}</p>
+                        <p className="text-sm font-semibold text-gray-900 text-left truncate">Adrián Rodríguez</p>
+                        <p className="text-xs text-gray-500 text-left truncate">+52 222-222-2222</p>
                     </div>
                 </div>
                 <div className="flex flex-wrap items-center space-x-2">
