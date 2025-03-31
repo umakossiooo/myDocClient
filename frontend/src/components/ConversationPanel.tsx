@@ -89,7 +89,6 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
 
     return (
         <div className="h-full flex flex-col px-4 py-4 bg-white rounded-lg shadow-sm">
-            <ConversationPanelHeader />
 
             <div className="flex-1 overflow-y-auto mt-6">
                 {/* Solicitudes Section */}

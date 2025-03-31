@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ConversationPanel from '../components/ConversationPanel';
+import ConversationPanelHeader from '../components/ConversationPanelHeader';
 import ChatBox from '../components/ChatBox';
 import { Solicitud, CurrentUser } from '../types';
 
 const ChatPage: React.FC = () => {
     const [selectedConversation, setSelectedConversation] = useState<Solicitud | null>(null);
     const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
+    const [activeTab, setActiveTab] = useState<string>("conversaciones");
 
     useEffect(() => {
         const fetchCurrentUser = async () => {
@@ -26,10 +28,19 @@ const ChatPage: React.FC = () => {
             <div className="flex flex-col md:flex-row w-full max-w-[95vw] lg:max-w-[80vw] px-3 md:px-6 gap-4 h-[90vh]">
                 {/* Conversation Panel */}
                 <div className="w-full md:w-1/3 h-full overflow-hidden">
-                    <ConversationPanel
-                        selectedConversation={selectedConversation}
-                        setSelectedConversation={setSelectedConversation}
-                    />
+                    <ConversationPanelHeader activeTab={activeTab} setActiveTab={setActiveTab} />
+                    {activeTab === "conversaciones" && (
+                        <ConversationPanel
+                            selectedConversation={selectedConversation}
+                            setSelectedConversation={setSelectedConversation}
+                        />
+                    )}
+                    {/* Placeholder for Llamadas */}
+                    {activeTab === "llamadas" && (
+                        <div className="flex items-center justify-center h-full text-gray-500">
+                            Llamadas feature is under construction.
+                        </div>
+                    )}
                 </div>
 
                 {/* Chat Box */}
