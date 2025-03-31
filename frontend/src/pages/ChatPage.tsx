@@ -27,7 +27,7 @@ const ChatPage: React.FC = () => {
         <div className="min-h-screen flex justify-center items-start py-9 bg-gray-50 overflow-hidden">
             <div className="flex flex-col md:flex-row w-full max-w-[95vw] lg:max-w-[80vw] px-3 md:px-6 gap-4 h-[90vh]">
                 {/* Conversation Panel */}
-                <div className="w-full md:w-1/3 h-full overflow-hidden">
+                <div className="w-full md:w-1/3 h-full overflow-hidden rounded-b-lg shadow-sm">
                     <ConversationPanelHeader activeTab={activeTab} setActiveTab={setActiveTab} />
                     {activeTab === "conversaciones" && (
                         <ConversationPanel
@@ -37,14 +37,14 @@ const ChatPage: React.FC = () => {
                     )}
                     {/* Placeholder for Llamadas */}
                     {activeTab === "llamadas" && (
-                        <div className="flex items-center justify-center h-full text-gray-500">
-                            Llamadas feature is under construction.
+                        <div className="flex items-center justify-center h-full text-gray-500 bg-white">
+                            Tab de llamadas en proceso...
                         </div>
                     )}
                 </div>
 
                 {/* Chat Box */}
-                <div className="w-full md:w-2/3 h-full overflow-hidden">
+                <div className="w-full md:w-2/3 h-full overflow-hidden shadow-sm rounded-b-lg">
                     <ChatBox conversation={selectedConversation} currentUser={currentUser} />
                 </div>
             </div>

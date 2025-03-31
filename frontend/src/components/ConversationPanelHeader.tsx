@@ -7,7 +7,7 @@ interface ConversationPanelHeaderProps {
 
 const ConversationPanelHeader: React.FC<ConversationPanelHeaderProps> = ({ activeTab, setActiveTab }) => {
     return (
-        <div className="text-sm font-medium bg-white rounded-t-lg shadow-sm text-gray-500 border-b border-gray-200 pt-5">
+        <div className="text-sm font-medium bg-white rounded-t-lg shadow-sm text-gray-500 border-b border-gray-200 pt-5 pl-4">
             <ul className="flex flex-row">
                 <li className="mr-2">
                     <button

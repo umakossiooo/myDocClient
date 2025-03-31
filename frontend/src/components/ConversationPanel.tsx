@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TbMessageDots } from "react-icons/tb";
 import { LuPhoneCall } from "react-icons/lu";
-import ConversationPanelHeader from "./ConversationPanelHeader";
 import axios from "axios";
 import { Solicitud } from "../types";
 
@@ -73,7 +72,7 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
     };
 
     const handleConversationClick = (conv: Solicitud) => {
-        setSelectedConversation(conv); // Set the selected conversation in the parent state
+        setSelectedConversation(conv);
     };
 
     const formatTime = (timestamp: string): string => {
@@ -88,9 +87,9 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
     };
 
     return (
-        <div className="h-full flex flex-col px-4 py-4 bg-white rounded-lg shadow-sm">
+        <div className="h-full flex flex-col px-4 py-4 bg-white shadow-lg rounded-b-lg">
 
-            <div className="flex-1 overflow-y-auto mt-6">
+            <div className="flex-1 overflow-y-auto mt-6 rounded-b-lg">
                 {/* Solicitudes Section */}
                 <div>
                     <h3 className="text-base text-gray-800 mb-2 text-left">Solicitudes</h3>
@@ -147,8 +146,8 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
                                 <div
                                     key={conv.id}
                                     className={`conversation-container flex items-center gap-3 p-2 rounded cursor-pointer text-sm hover:bg-gray-100 ${selectedConversation?.id === conv.id
-                                            ? "bg-gray-200 border-l-4 border-blue-500"
-                                            : "hover:border-l-4 hover:border-blue-300"
+                                        ? "bg-gray-200 border-l-4 border-blue-500"
+                                        : "hover:border-l-4 hover:border-blue-300"
                                         }`}
                                     onClick={() => handleConversationClick(conv)}
                                 >
