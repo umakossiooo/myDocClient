@@ -7,7 +7,7 @@ const ConversationPanelHeader: React.FC = () => {
                 <li className="mr-2">
                     <a
                         href="#"
-                        className="block text-left pl-0 pb-2 mr-8 border-b-2 border-blue-500 text-blue-500"
+                        className="block text-left pl-0 pb-2 mr-6 border-b-2 border-blue-500 text-blue-500"
                     >
                         Conversaciones
                     </a>
