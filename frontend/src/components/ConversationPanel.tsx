@@ -16,6 +16,7 @@ interface Solicitud {
 const ConversationPanel: React.FC = () => {
     const [solicitudes, setSolicitudes] = useState<Solicitud[]>([]);
     const [conversacionesActivas, setConversacionesActivas] = useState<Solicitud[]>([]);
+    const [selectedConversation, setSelectedConversation] = useState<Solicitud | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,7 +25,6 @@ const ConversationPanel: React.FC = () => {
 
                 const { solicitudes: pendingItems, conversaciones_activas: activeItems } = response.data;
 
-                // Map backend response to match the Solicitud interface
                 const mappedSolicitudes = pendingItems.map((item: any) => ({
                     id: item.id,
                     nombre: item.name,
@@ -43,7 +43,6 @@ const ConversationPanel: React.FC = () => {
                     content: item.content,
                 }));
 
-                // Use the mapped data to update state
                 setSolicitudes(mappedSolicitudes);
                 setConversacionesActivas(mappedConversacionesActivas);
             } catch (error) {
@@ -56,29 +55,31 @@ const ConversationPanel: React.FC = () => {
 
     const handleStatusChange = async (item: Solicitud, newStatus: "accepted" | "ignored") => {
         try {
-            const endpoint = item.type === "message" ? "http://localhost:8000/messages" : "http://localhost:8000/calls";
-            await axios.post(endpoint, { ...item, status: newStatus });
+            const endpoint =
+                item.type === "message"
+                    ? `http://localhost:8000/messages/${item.id}`
+                    : `http://localhost:8000/calls/${item.id}`;
+            await axios.put(endpoint, { status: newStatus });
 
             if (newStatus === "accepted") {
-                // Move to "Conversaciones activas"
                 setConversacionesActivas((prev) => [...prev, { ...item, status: "accepted" }]);
             }
 
-            // Remove from "Solicitudes"
             setSolicitudes((prev) => prev.filter((sol) => sol.id !== item.id));
         } catch (error) {
             console.error("Error updating status:", error);
         }
     };
 
+    const handleConversationClick = (conv: Solicitud) => {
+        setSelectedConversation(conv);
+    };
+
     return (
         <div className="h-full flex flex-col px-4 py-4 bg-white rounded-lg shadow-sm">
-            {/* Tabs / header*/}
             <ConversationPanelHeader />
 
-            {/* Scrollable Content */}
             <div className="flex-1 overflow-y-auto mt-6">
-                {/* Solicitudes */}
                 <div>
                     <h3 className="text-base text-gray-800 mb-2 text-left">Solicitudes</h3>
                     <div className="space-y-2">
@@ -119,7 +120,6 @@ const ConversationPanel: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Conversaciones activas */}
                 <div className="mt-6">
                     <h3 className="text-base text-gray-800 mb-2 text-left">Conversaciones activas</h3>
                     <div className="space-y-2">
@@ -127,6 +127,7 @@ const ConversationPanel: React.FC = () => {
                             <div
                                 key={conv.id}
                                 className="conversation-container flex items-center gap-3 p-2 rounded cursor-pointer text-sm hover:bg-gray-100"
+                                onClick={() => handleConversationClick(conv)}
                             >
                                 <div className="flex items-center gap-3">
                                     <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
@@ -136,7 +137,6 @@ const ConversationPanel: React.FC = () => {
                                             <LuPhoneCall className="w-4 h-4 text-blue-900" />
                                         )}
                                     </div>
-
                                     <div className="flex flex-col text-left">
                                         <p className="font-medium">{conv.nombre}</p>
                                         <p className="text-gray-500 text-xs">{conv.telefono}</p>
@@ -147,6 +147,16 @@ const ConversationPanel: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+            {selectedConversation && (
+                <div className="mt-4 p-4 bg-gray-100 rounded-lg shadow">
+                    <h3 className="text-lg font-medium text-gray-800">Chat with {selectedConversation.nombre}</h3>
+                    <p className="text-gray-500 text-sm">Phone: {selectedConversation.telefono}</p>
+                    {selectedConversation.type === "message" && (
+                        <p className="text-gray-700 mt-2">{selectedConversation.content}</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
