@@ -166,7 +166,7 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
                                                 <p className="font-medium">{conv.nombre}</p>
                                                 <p className="text-gray-500 text-xs">{conv.telefono}</p>
                                                 <p className="text-gray-400 text-xs truncate max-w-50 mt-4">
-                                                    {conv.content || "No hay mensajes aún"}
+                                                    {conv.content || ""}
                                                 </p>
                                             </div>
                                         </div>
