@@ -6,23 +6,9 @@ import { FiMic } from "react-icons/fi";
 import { LuSendHorizontal } from "react-icons/lu";
 import { GoPlusCircle } from "react-icons/go";
 import { TbMessageDots } from 'react-icons/tb';
+import { ChatProps } from '../types';
 
-interface ChatBoxProps {
-    conversation: {
-        id: string;
-        nombre: string;
-        telefono: string;
-        type: "message" | "call";
-        content?: string;
-    } | null;
-    currentUser: {
-        id: string;
-        name: string;
-        phone: string;
-    } | null;
-}
-
-const ChatBox: React.FC<ChatBoxProps> = ({ conversation, currentUser }) => {
+const ChatBox: React.FC<ChatProps> = ({ conversation, currentUser }) => {
     if (!conversation) {
         return (
             <div className="h-full flex items-center justify-center bg-white rounded-lg shadow-sm">

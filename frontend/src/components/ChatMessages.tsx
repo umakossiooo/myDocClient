@@ -1,22 +1,7 @@
 import React from 'react';
+import { ChatProps } from '../types';
 
-interface ChatMessagesProps {
-  conversation: {
-    id: string;
-    nombre: string;
-    telefono: string;
-    type: "message" | "call";
-    content?: string;
-    messages?: { sender: string; text: string; timestamp: string }[];
-  } | null;
-  currentUser: {
-    id: string;
-    name: string;
-    phone: string;
-  } | null;
-}
-
-const ChatMessages: React.FC<ChatMessagesProps> = ({ conversation, currentUser }) => {
+const ChatMessages: React.FC<ChatProps> = ({ conversation, currentUser }) => {
   if (!conversation || conversation.type !== "message") {
     return (
       <div className="h-full flex items-center justify-center">
