@@ -1,14 +1,30 @@
-import React, { use, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { TfiComments } from "react-icons/tfi";
 import { AiOutlineUser } from "react-icons/ai";
 import { TbUsersPlus } from "react-icons/tb";
 import { GoDotFill } from "react-icons/go";
 import { LuChevronDown } from "react-icons/lu";
+import { CurrentUser } from "../types";
+import axios from "axios";
 
 const MainHeader: React.FC = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
     const location = useLocation();
+
+    useEffect(() => {
+        const fetchCurrentUser = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/current_user");
+                setCurrentUser(response.data);
+            } catch (error) {
+                console.error("Error fetching current user:", error);
+            }
+        };
+
+        fetchCurrentUser();
+    }, []);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -47,10 +63,10 @@ const MainHeader: React.FC = () => {
             >
                 <div className="flex flex-col text-left">
                     <div className="flex flex-row items-center">
-                        <span className="font-medium truncate">Natashia Bunny</span>
+                        <span className="font-medium truncate">{currentUser ? currentUser.name : ""}</span>
                         <GoDotFill className="w-3 h-3 text-green-500 ml-1" />
                     </div>
-                    <span className="text-sm text-gray-500 font-normal truncate">natashabunny@email.com</span>
+                    <span className="text-sm text-gray-500 font-normal truncate">{currentUser ? currentUser.email : ""}</span>
                 </div>
                 <LuChevronDown className="w-7 h-7 ml-4 text-gray-500" />
             </button>
@@ -59,10 +75,10 @@ const MainHeader: React.FC = () => {
             {isDropdownOpen && (
                 <div
                     id="dropdownAvatarName"
-                    className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute right-4 top-16"
+                    className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute right-48 top-16"
                 >
                     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                        <div className="truncate">natashabunny@email.com</div>
+                        <div className="truncate">{currentUser ? currentUser.email : ""}</div>
                     </div>
                     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                         <li>
