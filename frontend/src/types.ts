@@ -11,6 +11,7 @@ export interface Solicitud {
     type: "message" | "call";
     content?: string;
     messages?: Message[];
+    timestamp: string;
 }
 
 export interface CurrentUser {

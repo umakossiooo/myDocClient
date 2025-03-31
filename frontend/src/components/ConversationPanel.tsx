@@ -31,6 +31,7 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
                     type: item.content ? "message" : "call",
                     status: item.status,
                     content: item.content,
+                    timestamp: item.timestamp,
                 }));
 
                 const mappedConversacionesActivas = activeItems.map((item: any) => ({
@@ -40,6 +41,7 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
                     type: item.content ? "message" : "call",
                     status: item.status,
                     content: item.content,
+                    timestamp: item.timestamp,
                 }));
 
                 setSolicitudes(mappedSolicitudes);
@@ -72,6 +74,17 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
 
     const handleConversationClick = (conv: Solicitud) => {
         setSelectedConversation(conv); // Set the selected conversation in the parent state
+    };
+
+    const formatTime = (timestamp: string): string => {
+        const now = new Date();
+        const messageTime = new Date(timestamp);
+        const diffInMinutes = Math.floor((now.getTime() - messageTime.getTime()) / 60000);
+
+        if (diffInMinutes < 1) return "Just now";
+        if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
+
+        return messageTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });
     };
 
     return (
@@ -140,18 +153,27 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
                                         }`}
                                     onClick={() => handleConversationClick(conv)}
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
-                                            {conv.type === "message" ? (
-                                                <TbMessageDots className="w-4 h-4 text-blue-900" />
-                                            ) : (
-                                                <LuPhoneCall className="w-4 h-4 text-blue-900" />
-                                            )}
+                                    <div className="flex justify-between items-start w-full">
+                                        <div className="flex items-start gap-3">
+                                            <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full mt-1">
+                                                {conv.type === "message" ? (
+                                                    <TbMessageDots className="w-4 h-4 text-blue-900" />
+                                                ) : (
+                                                    <LuPhoneCall className="w-4 h-4 text-blue-900" />
+                                                )}
+                                            </div>
+                                            <div className="flex flex-col text-left">
+                                                <p className="font-medium">{conv.nombre}</p>
+                                                <p className="text-gray-500 text-xs">{conv.telefono}</p>
+                                                <p className="text-gray-400 text-xs truncate max-w-50 mt-4">
+                                                    {conv.content || "No hay mensajes aún"}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div className="flex flex-col text-left">
-                                            <p className="font-medium">{conv.nombre}</p>
-                                            <p className="text-gray-500 text-xs">{conv.telefono}</p>
-                                        </div>
+
+                                        <span className="text-xs text-gray-500 mt-1">
+                                            {formatTime(conv.timestamp)}
+                                        </span>
                                     </div>
                                 </div>
                             ))}
