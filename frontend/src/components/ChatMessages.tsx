@@ -1,41 +1,60 @@
 import React from 'react';
 
-type Message = {
-  id: number;
-  text: string;
-  sender: 'paciente' | 'doctor';
-};
+interface ChatMessagesProps {
+  conversation: {
+    id: string;
+    nombre: string;
+    telefono: string;
+    type: "message" | "call";
+    content?: string;
+    messages?: { sender: string; text: string; timestamp: string }[];
+  } | null;
+  currentUser: {
+    id: string;
+    name: string;
+    phone: string;
+  } | null;
+}
 
-const messages: Message[] = [
-  { id: 1, sender: 'paciente', text: 'Hola, Médico. Me duele mucho la cabeza desde hace unas horas.' },
-  { id: 2, sender: 'doctor', text: 'Hola. ¿Puedes describir el dolor? ¿Es punzante, opresivo o late como un pulso?' },
-  { id: 3, sender: 'paciente', text: 'Es como una presión en la frente y las sienes.' },
-  { id: 4, sender: 'doctor', text: 'Entiendo. ¿Has dormido bien? ¿Has comido e hidratado adecuadamente hoy?' },
-];
+const ChatMessages: React.FC<ChatMessagesProps> = ({ conversation, currentUser }) => {
+  if (!conversation || conversation.type !== "message") {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <p className="text-gray-500 text-sm">No messages to display.</p>
+      </div>
+    );
+  }
 
-const ChatMessages: React.FC = () => {
+  const messages = conversation.messages || [
+    { sender: 'paciente', text: conversation.content || '', timestamp: '10:00 AM' },
+  ];
+
   return (
     <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-white">
-      {messages.map((msg) => {
-        const isOwnMessage = msg.sender === 'doctor';
-        const showSenderName = !isOwnMessage;
-        const time = isOwnMessage ? '10:11' : '10:08';
+      {messages.map((msg, index) => {
+        const isOwnMessage =
+          currentUser &&
+          conversation.nombre === currentUser.name &&
+          conversation.telefono === currentUser.phone;
 
         return (
-          <div key={msg.id} className={`flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'}`}>
-            {showSenderName && (
-              <span className="text-xs text-gray-500 mb-1 ml-2">Adrián Rodríguez</span>
+          <div key={index} className={`flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'}`}>
+            {/* Sender Name */}
+            {!isOwnMessage && (
+              <span className="text-xs text-gray-500 mb-1">
+                {conversation.nombre}
+              </span>
             )}
 
+            {/* Message Bubble */}
             <div
-              className={`flex flex-col max-w-[700px] p-4 leading-1.5 ${
-                isOwnMessage ? 'chat-bubble-doctor' : 'chat-bubble-paciente'
-              }`}
+              className={`flex flex-col max-w-[700px] p-4 leading-1.5 rounded-lg ${isOwnMessage ? 'chat-bubble-doctor bg-blue-100' : 'chat-bubble-paciente bg-gray-100'
+                }`}
             >
               <p className="text-sm">{msg.text}</p>
-              <div className={`text-xs mt-2 ${isOwnMessage ? 'chat-time-doctor' : 'chat-time-paciente'}`}>
-                {time}
-              </div>
+              <span className="text-xs text-gray-400 mt-2">
+                {msg.timestamp}
+              </span>
             </div>
           </div>
         );

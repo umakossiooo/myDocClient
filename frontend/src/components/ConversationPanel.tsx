@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { TbMessageDots } from "react-icons/tb";
 import { LuPhoneCall } from "react-icons/lu";
 import ConversationPanelHeader from "./ConversationPanelHeader";
-import ChatBox from "./ChatBox";
 import axios from "axios";
 
 interface Solicitud {
@@ -14,10 +13,17 @@ interface Solicitud {
     content?: string;
 }
 
-const ConversationPanel: React.FC = () => {
+interface ConversationPanelProps {
+    selectedConversation: Solicitud | null;
+    setSelectedConversation: (conversation: Solicitud | null) => void;
+}
+
+const ConversationPanel: React.FC<ConversationPanelProps> = ({
+    selectedConversation,
+    setSelectedConversation,
+}) => {
     const [solicitudes, setSolicitudes] = useState<Solicitud[]>([]);
     const [conversacionesActivas, setConversacionesActivas] = useState<Solicitud[]>([]);
-    const [selectedConversation, setSelectedConversation] = useState<Solicitud | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -73,7 +79,7 @@ const ConversationPanel: React.FC = () => {
     };
 
     const handleConversationClick = (conv: Solicitud) => {
-        setSelectedConversation(conv);
+        setSelectedConversation(conv); // Set the selected conversation in the parent state
     };
 
     return (
@@ -127,11 +133,10 @@ const ConversationPanel: React.FC = () => {
                         {conversacionesActivas.map((conv) => (
                             <div
                                 key={conv.id}
-                                className={`conversation-container flex items-center gap-3 p-2 rounded cursor-pointer text-sm hover:bg-gray-100 ${
-                                    selectedConversation?.id === conv.id
-                                        ? "bg-gray-200 border-l-4"
-                                        : "hover:border-l-4"
-                                }`}
+                                className={`conversation-container flex items-center gap-3 p-2 rounded cursor-pointer text-sm hover:bg-gray-100 ${selectedConversation?.id === conv.id
+                                        ? "bg-gray-200 border-l-4 border-blue-500"
+                                        : "hover:border-l-4 hover:border-blue-300"
+                                    }`}
                                 onClick={() => handleConversationClick(conv)}
                             >
                                 <div className="flex items-center gap-3">
