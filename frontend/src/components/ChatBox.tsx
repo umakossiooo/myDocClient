@@ -12,7 +12,7 @@ const ChatBox: React.FC<ChatProps> = ({ conversation, currentUser }) => {
     if (!conversation) {
         return (
             <div className="h-full flex items-center justify-center bg-white rounded-lg shadow-sm">
-                <p className="text-gray-500 text-sm">No conversation selected.</p>
+                <p className="text-gray-500 text-sm">No se ha seleccionado ninguna conversación</p>
             </div>
         );
     }
