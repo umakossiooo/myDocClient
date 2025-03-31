@@ -5,7 +5,7 @@ const ChatMessages: React.FC<ChatProps> = ({ conversation, currentUser }) => {
   if (!conversation || conversation.type !== "message") {
     return (
       <div className="h-full flex items-center justify-center">
-        <p className="text-gray-500 text-sm">No messages to display.</p>
+        <p className="text-gray-500 text-sm">No hay mensajes aún.</p>
       </div>
     );
   }
