@@ -6,7 +6,7 @@ import { TbUsersPlus } from "react-icons/tb";
 import { GoDotFill } from "react-icons/go";
 import { LuChevronDown } from "react-icons/lu";
 import { CurrentUser } from "../types";
-import axios from "axios";
+import { getCurrentUser } from "../api/CurrentUserAPI";
 
 const MainHeader: React.FC = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -16,8 +16,8 @@ const MainHeader: React.FC = () => {
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/current_user");
-                setCurrentUser(response.data);
+                const user = await getCurrentUser();
+                setCurrentUser(user);
             } catch (error) {
                 console.error("Error fetching current user:", error);
             }

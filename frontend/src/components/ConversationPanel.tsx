@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TbMessageDots } from "react-icons/tb";
 import { LuPhoneCall } from "react-icons/lu";
-import axios from "axios";
+import { getSolicitudes, updateSolicitudStatus } from "../api/SolicitudesAPI";
 import { Solicitud } from "../types";
 
 interface ConversationPanelProps {
@@ -19,15 +19,13 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/solicitudes");
-
-                const { solicitudes: pendingItems, conversaciones_activas: activeItems } = response.data;
+                const { solicitudes: pendingItems, conversaciones_activas: activeItems } = await getSolicitudes();
 
                 const mappedSolicitudes = pendingItems.map((item: any) => ({
                     id: item.id,
                     nombre: item.name,
                     telefono: item.phone,
-                    type: item.content ? "message" : "call",
+                    type: item.content ? "message" as "message" | "call" : "call" as "message" | "call",
                     status: item.status,
                     content: item.content,
                     timestamp: item.timestamp,
@@ -37,7 +35,7 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
                     id: item.id,
                     nombre: item.name,
                     telefono: item.phone,
-                    type: item.content ? "message" : "call",
+                    type: item.content ? "message" as "message" | "call" : "call" as "message" | "call",
                     status: item.status,
                     content: item.content,
                     timestamp: item.timestamp,
@@ -55,11 +53,7 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
 
     const handleStatusChange = async (item: Solicitud, newStatus: "accepted" | "ignored") => {
         try {
-            const endpoint =
-                item.type === "message"
-                    ? `http://localhost:8000/messages/${item.id}`
-                    : `http://localhost:8000/calls/${item.id}`;
-            await axios.put(endpoint, { status: newStatus });
+            await updateSolicitudStatus(item.id, item.type, newStatus);
 
             if (newStatus === "accepted") {
                 setConversacionesActivas((prev) => [...prev, { ...item, status: "accepted" }]);
@@ -88,7 +82,6 @@ const ConversationPanel: React.FC<ConversationPanelProps> = ({
 
     return (
         <div className="h-full flex flex-col px-4 py-4 bg-white shadow-lg rounded-b-lg">
-
             <div className="flex-1 overflow-y-auto mt-6 rounded-b-lg">
                 {/* Solicitudes Section */}
                 <div>

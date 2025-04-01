@@ -1,5 +1,10 @@
 import React from 'react';
-import { ChatProps } from '../types';
+import { Solicitud, CurrentUser } from '../types';
+
+interface ChatProps {
+  conversation: Solicitud | null;
+  currentUser: CurrentUser | null;
+}
 
 const ChatMessages: React.FC<ChatProps> = ({ conversation, currentUser }) => {
   if (!conversation || conversation.type !== "message") {
@@ -11,16 +16,18 @@ const ChatMessages: React.FC<ChatProps> = ({ conversation, currentUser }) => {
   }
 
   const messages = conversation.messages || [
-    { sender: 'paciente', text: conversation.content || '', timestamp: '10:00 AM' },
+    { sender: conversation.telefono, text: conversation.content || '', timestamp: conversation.timestamp },
   ];
+
+  const formatTimestamp = (timestamp: string): string => {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+  };
 
   return (
     <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-white">
-      {messages.map((msg, index) => {
-        const isOwnMessage =
-          currentUser &&
-          conversation.nombre === currentUser.name &&
-          conversation.telefono === currentUser.phone;
+      {messages.map((msg: { sender: string; text: string; timestamp: string }, index: number) => {
+        const isOwnMessage = currentUser?.phone === msg.sender;
 
         return (
           <div key={index} className={`flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'}`}>
@@ -38,7 +45,7 @@ const ChatMessages: React.FC<ChatProps> = ({ conversation, currentUser }) => {
             >
               <p className="text-sm">{msg.text}</p>
               <span className="text-xs text-gray-400 mt-2">
-                {msg.timestamp}
+                {formatTimestamp(msg.timestamp)}
               </span>
             </div>
           </div>

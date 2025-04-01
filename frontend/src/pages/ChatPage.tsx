@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import ConversationPanel from '../components/ConversationPanel';
 import ConversationPanelHeader from '../components/ConversationPanelHeader';
 import ChatBox from '../components/ChatBox';
 import { Solicitud, CurrentUser } from '../types';
+import { getCurrentUser } from '../api/CurrentUserAPI';
 
 const ChatPage: React.FC = () => {
     const [selectedConversation, setSelectedConversation] = useState<Solicitud | null>(null);
@@ -13,8 +13,8 @@ const ChatPage: React.FC = () => {
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/current_user");
-                setCurrentUser(response.data);
+                const user = await getCurrentUser();
+                setCurrentUser(user);
             } catch (error) {
                 console.error("Error fetching current user:", error);
             }
@@ -35,7 +35,6 @@ const ChatPage: React.FC = () => {
                             setSelectedConversation={setSelectedConversation}
                         />
                     )}
-                    {/* Placeholder for Llamadas */}
                     {activeTab === "llamadas" && (
                         <div className="flex items-center justify-center h-full text-gray-500 bg-white">
                             Tab de llamadas en proceso...

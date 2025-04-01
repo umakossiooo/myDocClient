@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChatMessages from './ChatMessages';
 import { FileText } from 'react-feather';
 import { CircleCheck } from 'lucide-react';
@@ -6,9 +6,24 @@ import { FiMic } from "react-icons/fi";
 import { LuSendHorizontal } from "react-icons/lu";
 import { GoPlusCircle } from "react-icons/go";
 import { TbMessageDots } from 'react-icons/tb';
-import { ChatProps } from '../types';
+import { Solicitud, CurrentUser } from '../types';
+
+interface ChatProps {
+    conversation: Solicitud | null;
+    currentUser: CurrentUser | null;
+}
 
 const ChatBox: React.FC<ChatProps> = ({ conversation, currentUser }) => {
+    const [message, setMessage] = useState<string>("");
+
+    const handleSendMessage = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (message.trim()) {
+            console.log("Message sent:", message);
+            setMessage("");
+        }
+    };
+
     if (!conversation) {
         return (
             <div className="h-full flex items-center justify-center bg-white rounded-lg shadow-sm">
@@ -49,13 +64,15 @@ const ChatBox: React.FC<ChatProps> = ({ conversation, currentUser }) => {
 
             {/* Chat Input */}
             <div className="border-t border-gray-200 px-4 py-3">
-                <form className="relative flex items-center">
+                <form className="relative flex items-center" onSubmit={handleSendMessage}>
                     <button type="button" className="absolute left-5 text-gray-500 hover:text-gray-600">
                         <GoPlusCircle className="w-6 h-6" />
                     </button>
                     <input
                         type="text"
                         placeholder="Escribe un mensaje..."
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                         className="flex-1 rounded-lg px-14 py-5 text-sm pr-28 outline-none"
                     />
                     <button type="button" className="absolute right-16 text-gray-500 hover:text-gray-600">
